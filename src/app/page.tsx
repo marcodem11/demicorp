@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { LanguageProvider } from '@/i18n/LanguageContext';
 
 const AppContent = dynamic(() => import('@/components/AppContent'), {
   ssr: false,
@@ -19,5 +20,9 @@ const AppContent = dynamic(() => import('@/components/AppContent'), {
 });
 
 export default function Home() {
-  return <AppContent />;
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
 }
