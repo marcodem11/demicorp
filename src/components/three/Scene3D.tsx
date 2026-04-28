@@ -4,26 +4,18 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import ParticleField from './ParticleField';
-import FloatingGeometry from './FloatingGeometry';
 
 interface Scene3DProps {
   className?: string;
   particleCount?: number;
-  showGeometry?: boolean;
   particleColor?: string;
-  intensity?: 'low' | 'medium' | 'high';
 }
 
 export default function Scene3D({
   className = '',
-  particleCount,
-  showGeometry = true,
-  particleColor = '#8b5cf6',
-  intensity = 'high',
+  particleCount = 1400,
+  particleColor = '#c4f042',
 }: Scene3DProps) {
-  const counts = { low: 800, medium: 1500, high: 2500 };
-  const count = particleCount ?? counts[intensity];
-
   return (
     <div className={`absolute inset-0 ${className}`}>
       <Canvas
@@ -37,15 +29,13 @@ export default function Scene3D({
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.2} />
-          <pointLight position={[10, 10, 10]} intensity={0.5} color="#8b5cf6" />
-          <pointLight position={[-10, -10, -10]} intensity={0.3} color="#06d6a0" />
-          <pointLight position={[0, 0, 5]} intensity={0.2} color="#4361ee" />
+          <ambientLight intensity={0.25} />
+          <pointLight position={[10, 10, 10]} intensity={0.4} color="#c4f042" />
+          <pointLight position={[-10, -10, -10]} intensity={0.2} color="#ffffff" />
 
-          <ParticleField count={count} color={particleColor} />
-          {showGeometry && <FloatingGeometry />}
+          <ParticleField count={particleCount} color={particleColor} size={0.012} />
 
-          <fog attach="fog" args={['#0a0a0a', 5, 25]} />
+          <fog attach="fog" args={['#08080b', 6, 22]} />
         </Suspense>
       </Canvas>
     </div>

@@ -10,12 +10,11 @@ export default function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 400 };
+  const springConfig = { damping: 28, stiffness: 380 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Only show custom cursor on desktop
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
       setIsVisible(true);
     }
@@ -53,9 +52,8 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-demicorp-violet pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-chalk pointer-events-none z-[9999] mix-blend-difference"
         style={{
           x: smoothX,
           y: smoothY,
@@ -63,9 +61,8 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
       />
-      {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-demicorp-violet/40 pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 rounded-full border border-chalk/30 pointer-events-none z-[9998]"
         style={{
           x: smoothX,
           y: smoothY,
@@ -73,13 +70,11 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          width: isHovering ? 50 : 30,
-          height: isHovering ? 50 : 30,
-          borderColor: isHovering
-            ? 'rgba(139, 92, 246, 0.8)'
-            : 'rgba(139, 92, 246, 0.3)',
+          width: isHovering ? 56 : 28,
+          height: isHovering ? 56 : 28,
+          borderColor: isHovering ? 'rgba(196, 240, 66, 0.8)' : 'rgba(231, 231, 238, 0.25)',
         }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.25 }}
       />
     </>
   );

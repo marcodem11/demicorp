@@ -21,25 +21,28 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Demicorp — Innovation Beyond Limits',
+  title: 'Marco De Michele — Full Stack Developer',
   description:
-    'Demicorp — Pionieri nell\'automazione AI, nello sviluppo di videogiochi 3D e nella creazione di software che ridefinisce il possibile.',
+    'Portfolio di Marco De Michele — Full Stack Developer con oltre 5 anni di esperienza in applicazioni web e mobile, AI automation e prodotti digitali moderni.',
   keywords: [
-    'Demicorp',
+    'Marco De Michele',
+    'Full Stack Developer',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Laravel',
+    'Flutter',
     'AI Automation',
-    'Game Development',
-    'Software Development',
-    '3D',
-    'Machine Learning',
-    'Web Development',
+    'Portfolio',
   ],
-  authors: [{ name: 'Demicorp' }],
+  authors: [{ name: 'Marco De Michele' }],
   openGraph: {
-    title: 'Demicorp — Innovation Beyond Limits',
+    title: 'Marco De Michele — Full Stack Developer',
     description:
-      'Pionieri nell\'automazione AI, nello sviluppo di videogiochi 3D e nella creazione di software che ridefinisce il possibile.',
+      'Full Stack Developer specializzato in soluzioni AI, automazione e prodotti digitali scalabili.',
     type: 'website',
     locale: 'it_IT',
+    url: 'https://www.demicorp.it/',
   },
 };
 
@@ -51,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="it" className="dark">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-demicorp-black`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-ink`}
       >
         {children}
       </body>

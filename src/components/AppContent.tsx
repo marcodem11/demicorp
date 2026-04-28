@@ -1,70 +1,50 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import SmoothScroll from '@/components/ui/SmoothScroll';
 import Navigation from '@/components/ui/Navigation';
 import Hero from '@/components/sections/Hero';
-import Services from '@/components/sections/Services';
 import About from '@/components/sections/About';
+import Work from '@/components/sections/Work';
+import Stack from '@/components/sections/Stack';
 import Projects from '@/components/sections/Projects';
-import Team from '@/components/sections/Team';
-import Contact from '@/components/sections/Contact';
 import Footer from '@/components/ui/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import { useState, useEffect } from 'react';
 
 export default function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500);
+    const timer = setTimeout(() => setIsLoading(false), 1600);
     return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
-    <SmoothScroll>
-      <CustomCursor />
-      <Navigation />
+    <>
+      <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
 
-      <main className="noise-overlay">
-        <Hero />
+      {!isLoading && (
+        <SmoothScroll>
+          <CustomCursor />
+          <Navigation />
 
-        <div className="relative h-px mx-auto max-w-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-demicorp-purple/30 to-transparent" />
-        </div>
+          <main className="noise-overlay">
+            <Hero />
+            <div className="divider mx-6 lg:mx-12" />
+            <About />
+            <div className="divider mx-6 lg:mx-12" />
+            <Work />
+            <div className="divider mx-6 lg:mx-12" />
+            <Stack />
+            <div className="divider mx-6 lg:mx-12" />
+            <Projects />
+          </main>
 
-        <Services />
-
-        <div className="relative h-px mx-auto max-w-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-demicorp-cyan/30 to-transparent" />
-        </div>
-
-        <About />
-
-        <div className="relative h-px mx-auto max-w-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-demicorp-blue/30 to-transparent" />
-        </div>
-
-        <Projects />
-
-        <div className="relative h-px mx-auto max-w-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-demicorp-violet/30 to-transparent" />
-        </div>
-
-        <Team />
-
-        <div className="relative h-px mx-auto max-w-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-demicorp-pink/30 to-transparent" />
-        </div>
-
-        <Contact />
-      </main>
-
-      <Footer />
-    </SmoothScroll>
+          <Footer />
+        </SmoothScroll>
+      )}
+    </>
   );
 }
