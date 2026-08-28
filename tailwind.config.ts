@@ -1,51 +1,39 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  darkMode: "class",
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#08080b",
-        carbon: "#0d0d12",
-        graphite: "#15151c",
-        slate: "#1c1c26",
-        line: "#23232f",
-        mute: "#6b6b7a",
-        bone: "#a8a8b8",
-        chalk: "#e7e7ee",
-        accent: {
-          DEFAULT: "#c4f042",
-          soft: "#9bd615",
-          deep: "#6b9410",
-        },
+        paper: "rgb(var(--paper) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        faint: "rgb(var(--faint) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        "accent-ink": "rgb(var(--accent-ink) / <alpha-value>)",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        body: ["var(--font-inter)", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        display: ["var(--font-display)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
-      animation: {
-        "fade-up": "fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "shimmer": "shimmer 2.5s linear infinite",
-        "marquee": "marquee 40s linear infinite",
+      maxWidth: {
+        page: "1200px",
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "shimmer": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "marquee": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },

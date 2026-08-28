@@ -1,146 +1,114 @@
-'use client';
+import Image from "next/image";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { Section } from "@/components/Section";
+import { Reveal } from "@/components/Reveal";
 
-import { motion } from 'framer-motion';
+const bio: Record<Locale, string[]> = {
+  it: [
+    "Più di 5 anni nello sviluppo software e oltre 3 in ambito professionale, costruendo applicazioni web, mobile e piattaforme SaaS scalabili. Mi occupo di tutto il ciclo di vita del prodotto — progettazione, architettura, sviluppo, deploy e monitoraggio.",
+    "Mi muovo tra React, Next.js, Laravel e Flutter, con un debole per tutto ciò che è AI, automazione e workflow intelligenti. Ho esperienza in HealthTech, EdTech e tooling interno aziendale. In parallelo sto ancora studiando Informatica all'Università di Bari.",
+    "Disponibile per opportunità remote e internazionali.",
+  ],
+  en: [
+    "More than 5 years in software development and over 3 professionally, building scalable web apps, mobile apps and SaaS platforms. I handle the whole product lifecycle — design, architecture, development, deploy and monitoring.",
+    "I move between React, Next.js, Laravel and Flutter, with a soft spot for everything AI, automation and smart workflows. I have experience in HealthTech, EdTech and internal business tooling. In parallel I'm still studying Computer Science at the University of Bari.",
+    "Available for remote and international opportunities.",
+  ],
+};
 
-const stats = [
-  { k: '5+', l: 'anni di sviluppo' },
-  { k: '3+', l: 'anni in produzione' },
-  { k: '20+', l: 'progetti consegnati' },
-  { k: '4', l: 'aziende & team' },
-];
+const headline: Record<Locale, { a: string; b: string }> = {
+  it: {
+    a: "Sviluppatore Full Stack con orientamento al prodotto.",
+    b: "Costruisco software che fa sembrare semplice ciò che semplice non è.",
+  },
+  en: {
+    a: "Product-minded Full Stack developer.",
+    b: "I build software that makes the hard things look simple.",
+  },
+};
 
-const traits = [
-  'Product-minded',
-  'Performance-first',
-  'AI & automation',
-  'Cross-functional',
-  'Agile / Scrum',
-  'Remote-ready',
-];
+export function About({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).about;
 
-export default function About() {
   return (
-    <section id="about" className="relative px-6 lg:px-12 py-32">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-baseline justify-between mb-16">
-          <p className="eyebrow">[ 02 — Profilo ]</p>
-          <p className="eyebrow hidden md:block">Bari · Italia</p>
+    <Section id="about" index={t.index}>
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        {/* Portrait */}
+        <div className="lg:col-span-5">
+          <Reveal>
+            <figure className="relative overflow-hidden rounded-xl border border-line">
+              <Image
+                src="/marco.jpg"
+                alt="Marco De Michele"
+                width={1000}
+                height={1777}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="aspect-[3/4] w-full object-cover object-[center_18%]"
+              />
+              <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-gradient-to-t from-black/55 to-transparent p-4 font-mono text-[11px] uppercase tracking-[0.12em] text-white/90">
+                <span>Marco De Michele</span>
+                <span>Puglia, IT</span>
+              </figcaption>
+            </figure>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-7 space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="headline text-chalk text-4xl md:text-5xl lg:text-6xl"
-            >
-              Sviluppatore Full Stack con orientamento al prodotto.
+        {/* Text */}
+        <div className="lg:col-span-7">
+          <Reveal>
+            <h2 className="font-display text-3xl font-semibold leading-tight tracking-tightest text-ink md:text-4xl lg:text-[2.75rem]">
+              {headline[locale].a}
               <br />
-              <span className="text-mute">
-                Costruisco software che fa sembrare semplice ciò che semplice non è.
-              </span>
-            </motion.h2>
+              <span className="text-muted">{headline[locale].b}</span>
+            </h2>
+          </Reveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.9, delay: 0.1 }}
-              className="space-y-5 text-bone text-base md:text-lg leading-relaxed max-w-2xl"
-            >
-              <p>
-                Più di 5 anni nello sviluppo software e oltre 3 in ambito
-                professionale, costruendo applicazioni web, mobile e
-                piattaforme SaaS scalabili. Mi occupo di tutto il ciclo di
-                vita del prodotto — progettazione, architettura, sviluppo,
-                deploy e monitoraggio.
-              </p>
-              <p>
-                Mi muovo tra <span className="text-chalk">React</span>,{' '}
-                <span className="text-chalk">Next.js</span>,{' '}
-                <span className="text-chalk">Laravel</span> e{' '}
-                <span className="text-chalk">Flutter</span>, con un debole per
-                tutto ciò che è <span className="text-accent">AI</span>,
-                automazione e workflow intelligenti. Ho esperienza in HealthTech,
-                EdTech e tooling interno aziendale.
-              </p>
-              <p className="text-mute">
-                Disponibile per opportunità remote e internazionali.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="flex flex-wrap gap-2 pt-4"
-            >
-              {traits.map((t) => (
-                <span
-                  key={t}
-                  className="px-3 py-1.5 border border-line rounded-full text-xs font-mono text-bone"
-                >
-                  {t}
-                </span>
-              ))}
-            </motion.div>
+          <div className="mt-7 space-y-5 text-base leading-relaxed text-muted md:text-lg">
+            {bio[locale].map((p, i) => (
+              <Reveal key={i} delay={0.05 + i * 0.05}>
+                <p className={i === bio[locale].length - 1 ? "text-faint" : ""}>{p}</p>
+              </Reveal>
+            ))}
           </div>
 
-          <div className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-line">
-            <div className="grid grid-cols-2 gap-px bg-line">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.l}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.7, delay: i * 0.08 }}
-                  className="bg-ink p-6 lg:p-8"
-                >
-                  <p className="headline text-chalk text-5xl lg:text-6xl mb-2">
+          <Reveal delay={0.15}>
+            <div className="mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-4">
+              {t.stats.map((s) => (
+                <div key={s.l} className="bg-paper p-5">
+                  <p className="font-display text-3xl font-semibold tracking-tightest text-ink lg:text-4xl">
                     {s.k}
                   </p>
-                  <p className="text-xs font-mono text-mute uppercase tracking-wider">
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
                     {s.l}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
+          </Reveal>
 
-            <div className="mt-10 space-y-4 text-sm">
-              <div className="flex justify-between border-b border-line pb-3">
-                <span className="text-mute font-mono">Formazione</span>
-                <span className="text-chalk text-right">
-                  Informatica
-                  <br />
-                  <span className="text-mute text-xs">Università di Bari</span>
-                </span>
+          <Reveal delay={0.2}>
+            <dl className="mt-8 space-y-4 text-sm">
+              <div className="flex items-start justify-between gap-4 border-b border-line pb-4">
+                <dt className="font-mono text-muted">{t.education}</dt>
+                <dd className="text-right text-ink">{t.university}</dd>
               </div>
-              <div className="flex justify-between border-b border-line pb-3">
-                <span className="text-mute font-mono">Bootcamp</span>
-                <span className="text-chalk text-right">
+              <div className="flex items-start justify-between gap-4 border-b border-line pb-4">
+                <dt className="font-mono text-muted">{t.bootcamp}</dt>
+                <dd className="text-right text-ink">
                   Boolean Coding
                   <br />
-                  <span className="text-mute text-xs">Full Stack · 2021</span>
-                </span>
+                  <span className="text-xs text-faint">2021</span>
+                </dd>
               </div>
-              <div className="flex justify-between border-b border-line pb-3">
-                <span className="text-mute font-mono">Lingue</span>
-                <span className="text-chalk text-right">
-                  IT · EN · ES
-                </span>
+              <div className="flex items-start justify-between gap-4 border-b border-line pb-4">
+                <dt className="font-mono text-muted">{t.languages}</dt>
+                <dd className="text-right text-ink">IT · EN · ES</dd>
               </div>
-              <div className="flex justify-between">
-                <span className="text-mute font-mono">Base</span>
-                <span className="text-chalk">Puglia, Italia</span>
-              </div>
-            </div>
-          </div>
+            </dl>
+          </Reveal>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

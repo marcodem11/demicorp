@@ -1,6 +1,6 @@
 {
   "name": "demicorp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,26 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.2.21",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "@react-three/fiber": "8.17.10",
-    "@react-three/drei": "9.114.3",
-    "three": "0.170.0",
-    "gsap": "3.12.5",
-    "framer-motion": "11.11.17",
-    "@studio-freight/lenis": "1.0.42"
+    "framer-motion": "11.15.0",
+    "next": "^15.5.24",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@types/node": "22.10.0",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
-    "@types/three": "0.170.0",
-    "typescript": "5.7.2",
-    "tailwindcss": "3.4.16",
-    "postcss": "8.4.49",
+    "@types/node": "22.10.5",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
     "autoprefixer": "10.4.20",
     "eslint": "8.57.1",
-    "eslint-config-next": "14.2.21"
+    "eslint-config-next": "^15.5.24",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.3"
   }
 }
